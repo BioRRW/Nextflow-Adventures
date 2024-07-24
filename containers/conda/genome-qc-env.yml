@@ -1,0 +1,28 @@
+name: genome-qc-env
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - pip
+  - wget
+  - git
+  - bzip2
+  - openjdk
+  - samtools
+  - numpy
+  - matplotlib
+  - pysam
+  - hmmer
+  - prodigal
+  - pplacer
+  - typing_extensions
+  - ncurses
+  - fastqc=0.12.1
+  - multiqc=1.14
+  - fastp=0.23.2
+  - sickle-trim=1.33
+  - bbmap
+  - metabat2
+  - bowtie2=2.5.4
+  - pigz

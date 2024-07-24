@@ -1,0 +1,24 @@
+name: assembly
+channels:
+  - anaconda
+  - conda-forge
+  - defaults
+  - bioconda
+  - r
+dependencies:
+  - python=3.8
+  - pip
+  - wget
+  - git
+  - bzip2
+  - cmake
+  - make
+  - hmmer
+  - zlib
+  - pigz
+  - gxx_linux-64
+  - pandas
+  - idba=1.1.3
+  - megahit=1.2.9
+  - prodigal=2.6.3
+
