@@ -10,6 +10,9 @@ containers/singularity/*.sif
 # Exclude all directories inside containers/conda/genome-qc-env
 containers/conda/genome-qc-env/*
 
+# Exclude all logs
+.nextflow.log*
+
 # Optional: Exclude other typical files and directories you might not want to commit
 # Node modules (if you're using Node.js)
 node_modules/
