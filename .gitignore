@@ -1,0 +1,54 @@
+# Exclude the test_data directory
+test_data/
+
+# Exclude the work directory (Nextflow work directory)
+work/
+
+# Exclude all .sif files in the containers/singularity directory
+containers/singularity/*.sif
+
+# Exclude all directories inside containers/conda/genome-qc-env
+containers/conda/genome-qc-env/*
+
+# Optional: Exclude other typical files and directories you might not want to commit
+# Node modules (if you're using Node.js)
+node_modules/
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# MacOS files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows system files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Temporary files and directories
+tmp/
+temp/
+*.log
+*.tmp
+*.swp
+
+# Compiled shared objects and libraries
+*.so
+*.dylib
+*.dll
+
+# Nextflow cache directory
+.nextflow/
+
+# Nextflow reports and logs
+reports/
+trace.txt
+timeline.html
+execution_report.html
+execution_timeline.html
