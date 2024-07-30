@@ -10,6 +10,9 @@ containers/singularity/*.sif
 # Exclude all directories inside containers/conda/genome-qc-env
 containers/conda/genome-qc-env/*
 
+# output example directory
+genome-QC-output/
+
 # Exclude all logs
 .nextflow.log*
 
