@@ -1,0 +1,9 @@
+Module	Section	Sample Name	Source
+FastQC	all_sections	Sample1_trimmed_R2	/home/reedrich/Projects/Nextflow-Tutorials/Nextflow-Examples/work/58/4b9803911baa310f2e1aff09da2624/logs/Sample1_trimmed_R2_fastqc.zip
+FastQC	all_sections	Sample1_R1_001	/home/reedrich/Projects/Nextflow-Tutorials/Nextflow-Examples/work/58/4b9803911baa310f2e1aff09da2624/logs/Sample1_R1_001_fastqc.zip
+FastQC	all_sections	Sample_2_trimmed_R1	/home/reedrich/Projects/Nextflow-Tutorials/Nextflow-Examples/work/58/4b9803911baa310f2e1aff09da2624/logs/Sample_2_trimmed_R1_fastqc.zip
+FastQC	all_sections	Sample1_trimmed_R1	/home/reedrich/Projects/Nextflow-Tutorials/Nextflow-Examples/work/58/4b9803911baa310f2e1aff09da2624/logs/Sample1_trimmed_R1_fastqc.zip
+FastQC	all_sections	Sample1_R2_001	/home/reedrich/Projects/Nextflow-Tutorials/Nextflow-Examples/work/58/4b9803911baa310f2e1aff09da2624/logs/Sample1_R2_001_fastqc.zip
+FastQC	all_sections	Sample_2_trimmed_R2	/home/reedrich/Projects/Nextflow-Tutorials/Nextflow-Examples/work/58/4b9803911baa310f2e1aff09da2624/logs/Sample_2_trimmed_R2_fastqc.zip
+FastQC	all_sections	Sample_2_R2	/home/reedrich/Projects/Nextflow-Tutorials/Nextflow-Examples/work/58/4b9803911baa310f2e1aff09da2624/logs/Sample_2_R2_fastqc.zip
+FastQC	all_sections	Sample_2_R1	/home/reedrich/Projects/Nextflow-Tutorials/Nextflow-Examples/work/58/4b9803911baa310f2e1aff09da2624/logs/Sample_2_R1_fastqc.zip

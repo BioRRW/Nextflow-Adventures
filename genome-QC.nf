@@ -12,7 +12,7 @@ nextflow.enable.dsl = 2
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-include { INPUT } from './modules/input'
+include { PARSE_CSV } from './modules/input/parse_csv.nf'
 include { FASTQC as FASTQC_RAW } from './modules/fastqc'
 include { FASTQC as FASTQC_TRIMMED } from './modules/fastqc'
 include { FASTP } from './modules/fastp'
@@ -39,25 +39,50 @@ if((params.version) || (params.v)){
 */
 
 workflow {
-    if ( params.input_reads ) {
+    if ( params.input_csv != "" && params.input_reads == "") {
+        Channel
+            .fromPath(params.input_csv)
+            .splitCsv(sep: ',')
+            .map { row ->
+                def sample = row[0]
+                def forward_pair = file(row[1])
+                def reverse_pair = file(row[2])
+                println "Sample: ${sample}, Forward Pair: ${forward_pair}, Reverse Pair: ${reverse_pair}"
+                [sample, [forward_pair, reverse_pair]]
+            }
+            .set { reads } 
+    } else if ( params.input_reads != "" ) {
         reads = Channel.fromFilePairs(params.input_reads + params.reads_fmt, checkIfExists: true)
         temp_reads = params.input_reads + params.reads_fmt
     } else {
         reads = Channel.fromFilePairs(params.reads, checkIfExists: true)
-        temp_reads = params.reads
     }
 
     // Logging based on user input
 
-    log.info """
-            COMET Pipeline v0.0.1
-            QC Only
-            ===================================
-            reads        : ${temp_reads}
-            outdir       : ${params.outdir}
-            threads      : ${params.threads}
-            """
-            .stripIndent()        
+    if (params.input_csv != ""){
+        log.info """
+                Genome QC Pipeline v0.0.1
+                QC Only
+                ===================================
+                input csv    : ${params.input_csv}
+                outdir       : ${params.outdir}
+                threads      : ${params.threads}
+                """
+                .stripIndent()   
+    } else {
+        log.info """
+                Genome QC Pipeline v0.0.1
+                QC Only
+                ===================================
+                reads        : ${temp_reads}
+                outdir       : ${params.outdir}
+                threads      : ${params.threads}
+                """
+                .stripIndent()        
+    }
+
+        reads.view()
 
         // Pass reads channel to initial FastQC 
         FASTQC_RAW( reads )
@@ -81,6 +106,7 @@ workflow {
             
         // Pass the collected log files to MultiQC
         MULTIQC( log_files )
+
 
 }
 

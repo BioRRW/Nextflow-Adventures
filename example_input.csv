@@ -1,0 +1,2 @@
+sample1,/home/reedrich/Projects/Nextflow-Tutorials/Nextflow-Examples/test_data/Sample1_R1_001.fastq.gz,/home/reedrich/Projects/Nextflow-Tutorials/Nextflow-Examples/test_data/Sample1_R2_001.fastq.gz
+sample2,/home/reedrich/Projects/Nextflow-Tutorials/Nextflow-Examples/test_data/Sample_2_R1.fastq.gz,/home/reedrich/Projects/Nextflow-Tutorials/Nextflow-Examples/test_data/Sample_2_R2.fastq.gz
