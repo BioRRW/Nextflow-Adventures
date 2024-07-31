@@ -51,15 +51,16 @@ Nextflow pipelines either rely on 1) the host system, 2) Conda recipe file or Co
 
 ### Clone the repository
 
-```bash
-git clone https://github.com/BioRRW/Nextflow-Adventures.git`
-```
+    ```bash
+    git clone https://github.com/BioRRW/Nextflow-Adventures.git`
+    ```
 
 ### Nextflow
 
 It is essential the user has Nextflow installed. This can optionally be done through Conda.
 
 [Install Nextflow >= v23.04.2.5870](https://www.nextflow.io/docs/latest/getstarted.html)
+
 [Install Anaconda/Miniconda](https://conda.io/projects/conda/en/latest/user-guide/install/index.html)
 
 ### Singularity
@@ -88,24 +89,24 @@ The user can use Conda or Mamba to build the Conda environments - Mamba can make
 
 Here is where we have defined these within the `nextflow*.config` file:
 
-```bash
-        /* Conda Environment recipe files */
-        genome_qc_env = "./containers/conda/genome-qc-env.yml"
+    ```bash
+    /* Conda Environment recipe files */
+    genome_qc_env = "./containers/conda/genome-qc-env.yml"
 
-        /* Conda Pre-built Environment Locations */
-        genome_qc_prebuilt_env = "./containers/conda/genome-qc-env"
-```
+    /* Conda Pre-built Environment Locations */
+    genome_qc_prebuilt_env = "./containers/conda/genome-qc-env"
+    ```
 
 Both of these are valid options. In this tutorial we will rely on the user pre-building the Conda environments.
 
 To build these environments, fist navigate to the `./containers/conda/` directory and then build the environment:
 
-```bash
-cd containers/conda
-conda env create --prefix ./genome-qc-env --file genome-qc-env.yml 
-# OR alternative use Mamba (suggested)
-mamba env create --prefix ./genome-qc-env --file genome-qc-env.yml
-```
+    ```bash
+    cd containers/conda
+    conda env create --prefix ./genome-qc-env --file genome-qc-env.yml 
+    # OR alternative use Mamba (suggested)
+    mamba env create --prefix ./genome-qc-env --file genome-qc-env.yml
+    ```
 
 ### Singularity Containers
 
@@ -115,10 +116,11 @@ For this repository, I have *NOT YET* hosted a Singularity container on SyLabs. 
 
 I will eventually host this container on SyLabs but for now, the user must build it themselves.
 
-``` bash
-cd /containers
-sudo singularity build genome-qc.sif genome-qc-singularity-recipe
-```
+    ``` bash
+    cd /containers
+    sudo singularity build genome-qc.sif genome-qc-singularity-recipe
+    ```
+
 If the user does not have `root` access, they may use the singularity option: `--fakeroot`.
 
 --------
@@ -136,30 +138,31 @@ We have setup, in the `nextflow*.config` files, an input filename design (which 
 These requirements are not always required and is a set assumption for this tutorial and must be stated to the user.
 
 Nextflow config setup:
-```bash
+    ```bash
     reads = "./raw_reads/*_R{1,2}*.f*.gz"
     reads_fmt = "*_R{1,2}*.f*.gz"
-```
+    ```
+
 Here, `reads` is a default location where the pipeline will look for potential read files. `reads_fmt` is setting the file pattern we are looking for when the user specifies a directory.
 
 Example usage:
-```bash
+    ```bash
     nextflow run genome-QC.nf -c genome-QC-intermediate.config --input_reads test_data/
-```
+    ```
 
 ### Input via CSV file
 
 We are first requiring the user to have the CSV in the following format:
 
-```bash
-<sample_name> , /path/to/sample_R1.fastq.gz     , /path/to/sample_R2.fastq.gz
-Sample1       , /data/reads/Sample1_R1.fastq.gz , /data/reads/Sample1_R2.fastq.gz
-```
+    ```bash
+    <sample_name> , /path/to/sample_R1.fastq.gz     , /path/to/sample_R2.fastq.gz
+    Sample1       , /data/reads/Sample1_R1.fastq.gz , /data/reads/Sample1_R2.fastq.gz
+    ```
 
 Example usage:
-```bash
+    ```bash
     nextflow run genome-QC.nf -c genome-QC-intermediate.config --input_csv example_input.csv
-```
+    ```
 
 See the file, [example_input.csv](./example_input.csv) for the CSV file used in this tutorial.
 
@@ -205,18 +208,20 @@ To get started with these examples, clone the repository and follow the instruct
 
 <a name="examples"></a>
 ## Examples
-
+<a name="simple"></a>
 ### Simple
 
-The simple example contains process definitions within the main workflow, providing an easy-to-understand introduction to Nextflow.
+The simple example is yet to come! Stay tuned for more!
 
+Simple will include a nextflow workflow with everything included in the `main*.nf` file - meaning modules and workflows.
+<a name="beginner"></a>
 ### Beginner
 
 The beginner example has separate `.nf` and `config` files, making it easier to manage and extend the pipeline configuration.
 
 - **Pipeline**: `genome-QC.nf`
 - **Configuration**: `genome-QC-beginner.config`
-
+<a name="intermediate"></a>
 ### Intermediate
 
 The intermediate example introduces profiles, allowing you to switch between different configurations, such as using Conda or Singularity, without SLURM.
@@ -224,7 +229,7 @@ The intermediate example introduces profiles, allowing you to switch between dif
 - **Pipeline**: `genome-QC.nf`
 - **Configuration**: `genome-QC-intermediate.config`
 - **Profiles**: `conda`, `singularity`, `conda_slurm`, `singularity_slurm`
-
+<a name="advanced"></a>
 ### Advanced
 
 The advanced example includes SLURM profiles, enabling the use of SLURM workload manager for job scheduling.
@@ -232,19 +237,21 @@ The advanced example includes SLURM profiles, enabling the use of SLURM workload
 - **Pipeline**: `genome-QC.nf`
 - **Configuration**: `genome-QC-advanced.config`
 - **Profiles**: `conda`, `singularity`
-
+<a name="expert"></a>
 ### Expert
+
+The expert example is yet to come! Stay tuned for more!
 
 The expert example has separate workflows, demonstrating how to modularize and structure complex pipelines.
 
 --------
-
+<a name="contributing"></a>
 ## Contributing
 
 Contributions are welcome! If you have any examples, tutorials, or improvements, please submit a pull request or open an issue.
 
 I will be continually adding more examples and also digging deeper into an expert level!
-
+<a name="license"></a>
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
