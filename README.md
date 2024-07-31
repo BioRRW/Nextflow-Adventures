@@ -50,9 +50,10 @@ Nextflow channels are used to manage the flow of data between processes in a pip
 Nextflow pipelines either rely on 1) the host system, 2) Conda recipe file or Conda Environment, or 3) Singularity/Docker container. Thus, the user must ensure they have the dependencies installed in one of these locations (1-3). 
 
 ### Clone the repository
-    ```bash
-    git clone https://github.com/BioRRW/Nextflow-Adventures.git`
-    ```
+Git the repository:
+```bash
+git clone https://github.com/BioRRW/Nextflow-Adventures.git`
+```
 
 ### Nextflow
 
@@ -87,23 +88,24 @@ Relying on the user to build the Conda environments puts strain on the user howe
 The user can use Conda or Mamba to build the Conda environments - Mamba can make this significantly faster.
 
 Here is where we have defined these within the `nextflow*.config` file:
-    ```bash
-    /* Conda Environment recipe files */
-    genome_qc_env = "./containers/conda/genome-qc-env.yml"
 
-    /* Conda Pre-built Environment Locations */
-    genome_qc_prebuilt_env = "./containers/conda/genome-qc-env"
-    ```
+```bash
+/* Conda Environment recipe files */
+genome_qc_env = "./containers/conda/genome-qc-env.yml"
+
+/* Conda Pre-built Environment Locations */
+genome_qc_prebuilt_env = "./containers/conda/genome-qc-env"
+```
 
 Both of these are valid options. In this tutorial we will rely on the user pre-building the Conda environments.
 
 To build these environments, fist navigate to the `./containers/conda/` directory and then build the environment:
-    ```bash
-    cd containers/conda
-    conda env create --prefix ./genome-qc-env --file genome-qc-env.yml 
-    # OR alternative use Mamba (suggested)
-    mamba env create --prefix ./genome-qc-env --file genome-qc-env.yml
-    ```
+```bash
+cd containers/conda
+conda env create --prefix ./genome-qc-env --file genome-qc-env.yml 
+# OR alternative use Mamba (suggested)
+mamba env create --prefix ./genome-qc-env --file genome-qc-env.yml
+```
 
 ### Singularity Containers
 
@@ -112,10 +114,10 @@ The user can typically rely on Nextflow to find and download a given container *
 For this repository, I have *NOT YET* hosted a Singularity container on SyLabs. In the future, below will be the command to download this container. The user should be within the `containers` directory before downloading the container.
 
 I will eventually host this container on SyLabs but for now, the user must build it themselves.
-    ``` bash
-    cd /containers
-    sudo singularity build genome-qc.sif genome-qc-singularity-recipe
-    ```
+``` bash
+cd /containers
+sudo singularity build genome-qc.sif genome-qc-singularity-recipe
+```
 
 If the user does not have `root` access, they may use the singularity option: `--fakeroot`.
 
@@ -134,30 +136,32 @@ We have setup, in the `nextflow*.config` files, an input filename design (which 
 These requirements are not always required and is a set assumption for this tutorial and must be stated to the user.
 
 Nextflow config setup:
-    ```bash
-    reads = "./raw_reads/*_R{1,2}*.f*.gz"
-    reads_fmt = "*_R{1,2}*.f*.gz"
-    ```
+```bash
+reads = "./raw_reads/*_R{1,2}*.f*.gz"
+reads_fmt = "*_R{1,2}*.f*.gz"
+```
 
 Here, `reads` is a default location where the pipeline will look for potential read files. `reads_fmt` is setting the file pattern we are looking for when the user specifies a directory.
 
 Example usage:
-    ```bash
-    nextflow run genome-QC.nf -c genome-QC-intermediate.config --input_reads test_data/
-    ```
+```bash
+nextflow run genome-QC.nf -c genome-QC-intermediate.config --input_reads test_data/
+```
 
 ### Input via CSV file
 
 We are first requiring the user to have the CSV in the following format:
-    ```bash
-    <sample_name> , /path/to/sample_R1.fastq.gz     , /path/to/sample_R2.fastq.gz
-    Sample1       , /data/reads/Sample1_R1.fastq.gz , /data/reads/Sample1_R2.fastq.gz
-    ```
+
+```bash
+sample_name , /path/to/sample_R1.fastq.gz     , /path/to/sample_R2.fastq.gz
+Sample1       , /data/reads/Sample1_R1.fastq.gz , /data/reads/Sample1_R2.fastq.gz
+```
 
 Example usage:
-    ```bash
-    nextflow run genome-QC.nf -c genome-QC-intermediate.config --input_csv example_input.csv
-    ```
+
+```bash
+nextflow run genome-QC.nf -c genome-QC-intermediate.config --input_csv example_input.csv
+```
 
 See the file, [example_input.csv](./example_input.csv) for the CSV file used in this tutorial.
 
