@@ -50,7 +50,6 @@ Nextflow channels are used to manage the flow of data between processes in a pip
 Nextflow pipelines either rely on 1) the host system, 2) Conda recipe file or Conda Environment, or 3) Singularity/Docker container. Thus, the user must ensure they have the dependencies installed in one of these locations (1-3). 
 
 ### Clone the repository
-
     ```bash
     git clone https://github.com/BioRRW/Nextflow-Adventures.git`
     ```
@@ -88,7 +87,6 @@ Relying on the user to build the Conda environments puts strain on the user howe
 The user can use Conda or Mamba to build the Conda environments - Mamba can make this significantly faster.
 
 Here is where we have defined these within the `nextflow*.config` file:
-
     ```bash
     /* Conda Environment recipe files */
     genome_qc_env = "./containers/conda/genome-qc-env.yml"
@@ -100,7 +98,6 @@ Here is where we have defined these within the `nextflow*.config` file:
 Both of these are valid options. In this tutorial we will rely on the user pre-building the Conda environments.
 
 To build these environments, fist navigate to the `./containers/conda/` directory and then build the environment:
-
     ```bash
     cd containers/conda
     conda env create --prefix ./genome-qc-env --file genome-qc-env.yml 
@@ -115,7 +112,6 @@ The user can typically rely on Nextflow to find and download a given container *
 For this repository, I have *NOT YET* hosted a Singularity container on SyLabs. In the future, below will be the command to download this container. The user should be within the `containers` directory before downloading the container.
 
 I will eventually host this container on SyLabs but for now, the user must build it themselves.
-
     ``` bash
     cd /containers
     sudo singularity build genome-qc.sif genome-qc-singularity-recipe
@@ -153,7 +149,6 @@ Example usage:
 ### Input via CSV file
 
 We are first requiring the user to have the CSV in the following format:
-
     ```bash
     <sample_name> , /path/to/sample_R1.fastq.gz     , /path/to/sample_R2.fastq.gz
     Sample1       , /data/reads/Sample1_R1.fastq.gz , /data/reads/Sample1_R2.fastq.gz
